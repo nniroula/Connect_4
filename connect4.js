@@ -17,28 +17,25 @@ var board = []; // array of rows, each row is array of cells  (board[y][x])
 
 function makeBoard() {
   // TODO: set "board" to empty HEIGHT x WIDTH matrix array
-//   const board =  [
-//         [null,   null,   null,   null,   null,   null,  null],
-//         [null,   null,   null,   null,   null,   null,  null],
-//         [null,   null,   null,   null,   null,   null,  null],
-//         [null,   null,   null,   null,   null,   null,  null],
-//         [null,   null,   null,   null,   null,   null,  null],
-//         [null,   null,   null,   null,   null,   null,  null]
-//   ]
+  /*
+  const board =  [
+        [null,   null,   null,   null,   null,   null,  null],
+        [null,   null,   null,   null,   null,   null,  null],
+        [null,   null,   null,   null,   null,   null,  null],
+        [null,   null,   null,   null,   null,   null,  null],
+        [null,   null,   null,   null,   null,   null,  null],
+        [null,   null,   null,   null,   null,   null,  null]
+  ]
+  */
   // make this board dynamic, consider the height of the board, and push it to empty array named board
 
-// function makeBoard() {
     // for (let height = 0; height < 6; height++) {
-    // for (let height = 0; height < HEIGHT; height++) {
-    for (let y = 0; y < HEIGHT; y++) {
-    //     boardObject = {length: 7};
-    //     // convert this to an array and push it to an empty array to represent each row
-    // //   board.push(Array.from({ length: 7 }));
-    //     toArray = Array.from(boardObject);
-    //     // push it to baord
-    //     board.push(toArray);
-
-        board.push(Array.from({length: WIDTH}));
+    for (let height = 0; height < HEIGHT; height++) {
+        boardObject = {length: 7};
+         // convert this to an array and push it to an empty array to represent each row
+        toArray = Array.from(boardObject);
+         // push it to baord
+        board.push(toArray);
     }
 
 }
@@ -82,17 +79,15 @@ function findSpotForCol(x) {
 //   for (let x = 0; x<WIDTH, x++)
     // tableCell = document.getElementsByTagName("td")
     // for(let i = 0; i <tableCell.length; i++){  // this is td
-    //     // get the column of the cell you click on, add eventlistener for it
+        // get the column of the cell you click on, add eventlistener for it
     //     tableCell[i].addEventListener('click', (e) => {
     //         console.log(`${(e.target.parentElement.rowIndex)}, ${e.target.cellIndex}`);
-    //     // you may have to return this if needed
+         // you may have to return this if needed
     //     })
     // }
 
-    //////////////
-    // function findSpotForCol(x) {
-        // get height of board, keep decrementing it until you get to the bottom most row
-        // if xy coordinate is not found, return value of vertical(y) coordinate, then return null
+    // get height of board, keep decrementing it until you get to the bottom most row
+    // if xy coordinate is not found, return value of vertical(y) coordinate, then return null
     for (let height = HEIGHT - 1; height >= 0; height--) {
             // if no cordinate is found in board array, return the input(height)
         if (!board[height][x]) {
@@ -101,12 +96,8 @@ function findSpotForCol(x) {
     }
     // if xy coordinate is found, return null
     return null;
-      //}
 
-
-    /////////////////////
-
-//   return 0;   // uncomment this if needed, this is from starter code
+//   return 0;  
 }
 
 /** placeInTable: update DOM to place piece into HTML table of board */
@@ -114,39 +105,22 @@ function findSpotForCol(x) {
 function placeInTable(y, x) {
   // TODO: make a div and insert into correct table cell
     let newDiv = document.createElement('div');
-  // retrieve table cell, piece is a class defined in css file, use it here
-//   tableCell = document.querySelector('')
+  // retrieve table cell, piece is a class defined in css file, use it here // tableCell = document.querySelector('')
 // add a class named piece to it
     newDiv.classList.add('piece');
     // create another class and add it to indicate a player number 1 or 2
     newDiv.classList.add(`player${currPlayer}`);
-    // newDiv.classList.add(`player${currPlayer}`);
-    // piece.style.top = -50 * (y + 2);
-    newDiv.style.top = -50 * (y + 2);
     // retrieve an element by its id bcoz there are many of these ones
     let slotInTable = document.getElementById(`${y}-${x}`);
     // now put newDiv into this one
     slotInTable.append(newDiv);
-
-  /*
-    function placeInTable(y, x) {
-  const piece = document.createElement('div');
-  piece.classList.add('piece');
-  piece.classList.add(`p${currPlayer}`);
-  piece.style.top = -50 * (y + 2);
-
-  const spot = document.getElementById(`${y}-${x}`);
-  spot.append(piece);
-}
-  */
-
 }
 
 /** endGame: announce game end */
 
 function endGame(msg) {
   // TODO: pop up alert message
-  // justing adding an alert statement should do for this
+  // just adding an alert statement should do for this
   alert(msg);
 }
 
@@ -178,30 +152,12 @@ function handleClick(evt) {
   // check for tie
   // TODO: check if all cells in board are filled; if so call, call endGame
 
-  // if all the cells in the table are filled and no one wins, its a tie
-  // check the array board
-  // some array methods to use are forEach, filter, map, reduce, some, every, find, findIndex
-  // every method: iterates through an array, runs a callback on each value in the array,
-  // if callback returns false for any single value, then it returns false; otherwise returns true
+  // if all the cells in the table are filled and no one wins, its a tie, check the array board, some good array methods to use are forEach, some, every, find, findIndex
+  // every method: iterates through an array, runs a callback on each value in the array, if callback returns false for any single value, then it returns false; otherwise returns true
   // the resul to callback is always a boolean value, it takes function as an argument
-//   if(board.every(rowNumber => rowNumber.every(cellNumber => cellNumber))){
-//       return endGame("DRAW");
-//   }
     if(board.every(row => row.every(cell => cell))){
         return endGame("DRAW");
     }
-  /*
-  
-    // check for tie
-  if (board.every(row => row.every(cell => cell))) {
-    return endGame('Tie!');
-  }
-    
-  // switch players
-  currPlayer = currPlayer === 1 ? 2 : 1;
-}
-
-  */
 
   // switch players
   // TODO: switch currPlayer 1 <-> 2
